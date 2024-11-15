@@ -11,10 +11,6 @@
         tools:context=".SearchFragment">
 
         <!-- Toolbar -->
-        <include
-            layout="@layout/toolbar_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <!-- Thanh tìm kiếm -->
         <LinearLayout

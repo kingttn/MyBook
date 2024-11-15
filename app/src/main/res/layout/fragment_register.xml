@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
-
     <EditText
         android:id="@+id/edt_username"
         android:layout_width="match_parent"
@@ -41,7 +40,7 @@
         android:id="@+id/edt_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="username"
+        android:hint="address"
         android:inputType="text"/>
     <Button
         android:id="@+id/btn_register"
