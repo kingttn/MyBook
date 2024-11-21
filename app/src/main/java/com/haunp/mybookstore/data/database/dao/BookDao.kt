@@ -18,7 +18,7 @@ interface BookDao {
     suspend fun updateBook(book: BookEntity)
 
     @Delete
-    suspend fun deleteBook(book: BookEntity)
+    suspend fun deleteBook(bookID: Int)
 
     @Query("SELECT * FROM books WHERE title LIKE :keyword OR author LIKE :keyword")
     suspend fun searchBooks(keyword: String): List<BookEntity>

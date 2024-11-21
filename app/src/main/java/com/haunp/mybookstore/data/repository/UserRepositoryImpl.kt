@@ -1,10 +1,13 @@
 package com.haunp.mybookstore.data.repository
 
+import com.haunp.mybookstore.data.database.dao.CartDao
 import com.haunp.mybookstore.data.database.dao.UserDao
+import com.haunp.mybookstore.domain.entity.CartEntity
 import com.haunp.mybookstore.domain.entity.UserEntity
 import com.haunp.mybookstore.domain.repository.IUserRepository
 
-class UserRepositoryImpl(private val userDao: UserDao) : IUserRepository {
+class UserRepositoryImpl(private val userDao: UserDao,private val cartDao: CartDao)
+    : IUserRepository {
     override suspend fun registerUser(userEntity: UserEntity): Long {
         return userDao.insertUser(userEntity)
     }
@@ -13,5 +16,13 @@ class UserRepositoryImpl(private val userDao: UserDao) : IUserRepository {
         return userDao.login(userName, password) ?: UserEntity()
     }
 
-
+    override suspend fun addBookInCart(cartEntity: CartEntity) {
+        return cartDao.addToCart(cartEntity)
+    }
+    override suspend fun deleteBookInCart(cartEntity: CartEntity) {
+        return cartDao.removeFromCart(cartEntity)
+    }
+    override suspend fun updateQuantityBook(userId: Int, productId: Int, quantity: Int) {
+        return cartDao.updateCartQuantity(userId, productId, quantity)
+    }
 }
