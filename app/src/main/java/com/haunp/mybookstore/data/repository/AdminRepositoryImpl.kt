@@ -20,9 +20,9 @@ class AdminRepositoryImpl(
         return bookDao.insertBook(bookEntity)
     }
 
-    override suspend fun deleteBook(id: Int) {
-        return bookDao.deleteBook(id)
-    }
+//    override suspend fun deleteBook(id: Int) {
+//        return bookDao.deleteBookById(id)
+//    }
 
     override suspend fun updateBook(bookEntity: BookEntity) {
         return bookDao.updateBook(bookEntity)
@@ -32,9 +32,9 @@ class AdminRepositoryImpl(
         return categoryDao.insertCategory(categoryEntity)
     }
 
-    override suspend fun deleteCategory(id: Int) {
-        return categoryDao.deleteCategory(id)
-    }
+//    override suspend fun deleteCategory(id: Int) {
+//        return categoryDao.deleteCategory(id)
+//    }
 
     override suspend fun updateCategory(categoryEntity: CategoryEntity) {
         return categoryDao.updateCategory(categoryEntity)
@@ -48,11 +48,11 @@ class AdminRepositoryImpl(
         return userDao.insertUser(UserEntity)
     }
 
-    override suspend fun deleteUser(id: Int) {
-        return userDao.deleteUserById(id)
-    }
+//    override suspend fun deleteUser(id: Int) {
+//        return userDao.deleteUserById(id)
+//    }
 
     override suspend fun updateUser(UserEntity: UserEntity) {
-        TODO("Not yet implemented")
+        return userDao.updateUser(UserEntity)
     }
 }

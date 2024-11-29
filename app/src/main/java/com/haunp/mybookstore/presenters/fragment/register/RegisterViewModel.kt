@@ -15,4 +15,5 @@ class RegisterViewModel(
             registerUseCase.invoke(userEntity)
         }
     }
+
 }

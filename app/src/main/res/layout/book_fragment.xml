@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/edtIdBook"
+        android:layout_width="match_parent"
+        android:hint="ID Book"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtTitle"
+        android:layout_width="match_parent"
+        android:hint="Title Book"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtAuthor"
+        android:layout_width="match_parent"
+        android:hint="Author Book"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtPrice"
+        android:layout_width="match_parent"
+        android:hint="Price Book"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtQuantity"
+        android:layout_width="match_parent"
+        android:hint="Quantity Book"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtCategory"
+        android:layout_width="match_parent"
+        android:hint="Category Book"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/edtSize"
+        android:layout_width="match_parent"
+        android:hint="Size Book"
+        android:layout_height="wrap_content" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_gravity="left"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"/>
+        <Button
+            android:id="@+id/btnDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"/>
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_gravity="end"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookAdminRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+
+
+
+</LinearLayout>

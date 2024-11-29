@@ -10,6 +10,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.haunp.mybookstore.R
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.admin.category_admin.CategoryAdminFragment
+import com.haunp.mybookstore.presenters.fragment.admin.statistical.StatisticalFragment
+import com.haunp.mybookstore.presenters.fragment.admin.user.UserFragment
 import com.haunp.mybookstore.presenters.fragment.user.category_user.CategoryUserFragment
 import com.haunp.mybookstore.presenters.fragment.user.home.HomeFragment
 import com.haunp.mybookstore.presenters.fragment.user.search.SearchFragment
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationViewAdmin.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_book -> {
-                    showFragment(HomeFragment())
+                    showFragment(BookFragment())
                     true
                 }
 
@@ -69,12 +71,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_user -> {
-                    showFragment(SearchFragment())
+                    showFragment(UserFragment())
                     true
                 }
 
                 R.id.nav_statistical -> {
-                    showFragment(SettingFragment())
+                    showFragment(StatisticalFragment())
                     true
                 }
 
@@ -91,12 +93,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setBottomNavigation(role: Int) {
         val bottomNavigationViewUser = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
+        val ftbCart = findViewById<View>(R.id.fbn_cart)
         val bottomNavigationViewAdmin =
             findViewById<BottomNavigationView>(R.id.bottom_nav_menu_admin)
 
         if (role == 0) {
             bottomNavigationViewUser.visibility = View.GONE
             bottomNavigationViewAdmin.visibility = View.VISIBLE
+            ftbCart.visibility = View.GONE
             showFragment(BookFragment())
         } else if (role == 1) {
             bottomNavigationViewAdmin.visibility = View.GONE
