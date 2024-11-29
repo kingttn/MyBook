@@ -2,10 +2,12 @@ package com.haunp.mybookstore.presenters.fragment.admin.book
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.haunp.mybookstore.databinding.BookFragmentBinding
 import com.haunp.mybookstore.domain.entity.BookEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
 import org.koin.android.ext.android.inject
+import java.util.Locale
 
 class BookFragment : BaseFragment<BookFragmentBinding>() {
     override var isTerminalBackKeyActive: Boolean = true
@@ -19,6 +21,13 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
         initView()
     }
     override fun initView() {
+        val adapter = BookAdapter()
+        binding.bookAdminRecyclerView.adapter = adapter
+        binding.bookAdminRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        viewModel.books.observe(viewLifecycleOwner) { bookList ->
+            adapter.submitList(bookList)
+        }
         binding{
             btnAdd.setOnClickListener {
                 val title = edtTitle.text.toString()
@@ -32,7 +41,7 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                     author = author,
                     price = price.toDouble(),
                     quantity = quantity.toInt(),
-                    categoryId = 0,
+                    categoryId = 1,
                     size = size
                 )
                 viewModel.addBook(bookEntity)

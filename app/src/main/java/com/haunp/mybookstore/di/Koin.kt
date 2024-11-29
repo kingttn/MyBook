@@ -6,7 +6,7 @@ import com.haunp.mybookstore.data.repository.AdminRepositoryImpl
 import com.haunp.mybookstore.data.repository.UserRepositoryImpl
 import com.haunp.mybookstore.domain.repository.IAdminRepository
 import com.haunp.mybookstore.domain.repository.IUserRepository
-import com.haunp.mybookstore.domain.usecase.BookUseCase
+import com.haunp.mybookstore.domain.usecase.AdminUseCase
 import com.haunp.mybookstore.domain.usecase.LoginUseCase
 import com.haunp.mybookstore.domain.usecase.RegisterUseCase
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookViewModel
@@ -40,7 +40,7 @@ var viewModelModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { BookViewModel(get(),get()) }
     viewModel { UserViewModel() }
-    viewModel { CategoryAdminViewModel(get()) }
+    viewModel { CategoryAdminViewModel(get(),get()) }
     viewModel { StatisticalViewModel() }
     viewModel { CategoryUserViewModel() }
     viewModel { HomeViewModel() }
@@ -52,7 +52,7 @@ var viewModelModule = module {
 var useCaseModule = module {
     factory { RegisterUseCase(get()) }
     factory { LoginUseCase(get()) }
-    factory { BookUseCase(get()) }
+    factory { AdminUseCase(get()) }
 }
 
 var repositoryModule = module {

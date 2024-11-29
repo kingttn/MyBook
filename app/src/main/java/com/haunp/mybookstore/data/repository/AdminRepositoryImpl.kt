@@ -1,5 +1,6 @@
 package com.haunp.mybookstore.data.repository
 
+import androidx.lifecycle.LiveData
 import com.haunp.mybookstore.data.database.dao.BookDao
 import com.haunp.mybookstore.data.database.dao.CategoryDao
 import com.haunp.mybookstore.data.database.dao.OrderDao
@@ -16,6 +17,11 @@ class AdminRepositoryImpl(
     private val bookDao: BookDao,
     private val orderDao: OrderDao
 ) : IAdminRepository {
+
+    override fun getAllBooks(): LiveData<List<BookEntity>> {
+        return bookDao.getAllBooks()
+    }
+
     override suspend fun addBook(bookEntity: BookEntity) {
         return bookDao.insertBook(bookEntity)
     }
@@ -26,6 +32,9 @@ class AdminRepositoryImpl(
 
     override suspend fun updateBook(bookEntity: BookEntity) {
         return bookDao.updateBook(bookEntity)
+    }
+    override fun getAllCategory(): LiveData<List<CategoryEntity>> {
+        return categoryDao.getAllCategory()
     }
 
     override suspend fun addCategory(categoryEntity: CategoryEntity) {
