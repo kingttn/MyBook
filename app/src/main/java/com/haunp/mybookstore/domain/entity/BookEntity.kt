@@ -22,5 +22,5 @@ data class BookEntity(
     val price: Double,
     val quantity: Int,
     val categoryId: Int, // Khóa ngoại đến bảng Categories
-    val size: String // Kích thước (nếu có)
+    val imageUri: String
 )

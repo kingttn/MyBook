@@ -1,8 +1,11 @@
 package com.haunp.mybookstore.presenters.fragment.admin.category_admin
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.haunp.mybookstore.R
 import com.haunp.mybookstore.databinding.ItemCategoryBinding
 import com.haunp.mybookstore.domain.entity.CategoryEntity
 
@@ -23,6 +26,9 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>
 
         fun bind(category: CategoryEntity) {
             binding.tvCategoryName.text = category.name
+            Glide.with(binding.root.context)
+                .load(category.imageUri) // Load ảnh từ URI
+                .into(binding.ivCategoryImage) // ImageView hiển thị ảnh
         }
     }
 

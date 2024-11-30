@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.haunp.mybookstore.data.database.dao.BookDao
 import com.haunp.mybookstore.data.database.dao.CartDao
 import com.haunp.mybookstore.data.database.dao.CategoryDao
-import com.haunp.mybookstore.data.database.dao.CommentDao
+import com.haunp.mybookstore.data.database.dao.RateDao
 import com.haunp.mybookstore.data.database.dao.OrderDao
 import com.haunp.mybookstore.data.database.dao.UserDao
 import com.haunp.mybookstore.domain.entity.BookEntity
@@ -26,5 +26,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun getCategoriesDao(): CategoryDao
     abstract fun getCartDao(): CartDao
     abstract fun getOrderDao(): OrderDao
-    abstract fun getRateDao(): CommentDao
+    abstract fun getRateDao(): RateDao
+
 }

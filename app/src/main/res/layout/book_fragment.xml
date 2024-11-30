@@ -33,11 +33,12 @@
         android:layout_width="match_parent"
         android:hint="Category Book"
         android:layout_height="wrap_content" />
-    <EditText
-        android:id="@+id/edtSize"
+    <Button
+        android:id="@+id/btnSelectBook"
         android:layout_width="match_parent"
-        android:hint="Size Book"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Select Image Book"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

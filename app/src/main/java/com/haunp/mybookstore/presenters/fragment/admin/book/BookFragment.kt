@@ -1,7 +1,11 @@
 package com.haunp.mybookstore.presenters.fragment.admin.book
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haunp.mybookstore.databinding.BookFragmentBinding
 import com.haunp.mybookstore.domain.entity.BookEntity
@@ -10,8 +14,11 @@ import org.koin.android.ext.android.inject
 import java.util.Locale
 
 class BookFragment : BaseFragment<BookFragmentBinding>() {
-    override var isTerminalBackKeyActive: Boolean = true
+    private var selectedImageUri: Uri? = null
     private val viewModel: BookViewModel by inject()
+
+
+    override var isTerminalBackKeyActive: Boolean = true
 
     override fun getDataBinding(): BookFragmentBinding {
         return BookFragmentBinding.inflate(layoutInflater)
@@ -29,20 +36,24 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
             adapter.submitList(bookList)
         }
         binding{
+            btnSelectBook.setOnClickListener {
+                val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
+                imagePickerLauncher.launch(intent)
+            }
             btnAdd.setOnClickListener {
                 val title = edtTitle.text.toString()
                 val author = edtAuthor.text.toString()
                 val price = edtPrice.text.toString()
                 val quantity = edtQuantity.text.toString()
                 val category = edtCategory.text.toString()
-                val size = edtSize.text.toString()
+                val imageUriString = selectedImageUri?.toString() ?: ""
                 val bookEntity = BookEntity(
                     title = title,
                     author = author,
                     price = price.toDouble(),
                     quantity = quantity.toInt(),
                     categoryId = 1,
-                    size = size
+                    imageUri = imageUriString
                 )
                 viewModel.addBook(bookEntity)
                 edtIdBook.setText("")
@@ -51,7 +62,6 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                 edtPrice.setText("")
                 edtQuantity.setText("")
                 edtCategory.setText("")
-                edtSize.setText("")
             }
 //            btnDel.setOnClickListener {
 //                val id = edtIdBook.text.toString()
@@ -65,7 +75,7 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                 val price = edtPrice.text.toString()
                 val quantity = edtQuantity.text.toString()
                 val category = edtCategory.text.toString()
-                val size = edtSize.text.toString()
+                val imageUriString = selectedImageUri?.toString() ?: ""
                 val bookEntity = BookEntity(
                     bookId = id.toInt(),
                     title = title,
@@ -73,10 +83,18 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                     price = price.toDouble(),
                     quantity = quantity.toInt(),
                     categoryId = 0,
-                    size = size
+                    imageUri = imageUriString
+
                 )
                 viewModel.updateBook(bookEntity)
             }
+        }
+    }
+    private val imagePickerLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            selectedImageUri = result.data?.data
         }
     }
 

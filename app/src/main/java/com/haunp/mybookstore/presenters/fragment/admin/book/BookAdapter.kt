@@ -3,6 +3,8 @@ package com.haunp.mybookstore.presenters.fragment.admin.book
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.haunp.mybookstore.databinding.ItemBookAdminBinding
 import com.haunp.mybookstore.databinding.ItemBookBinding
 import com.haunp.mybookstore.domain.entity.BookEntity
 
@@ -15,17 +17,22 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
         books.addAll(newBooks)
         notifyDataSetChanged()
     }
-    inner class BookViewHolder(private val binding: ItemBookBinding) :
+    inner class BookViewHolder(private val binding: ItemBookAdminBinding) :
             RecyclerView.ViewHolder(binding.root) {
                 fun bind(book: BookEntity) {
+                    binding.tvId.text = book.bookId.toString()
                     binding.tvTittle.text = book.title
-                    binding.tvRating.text = book.author
+                    binding.tvAuthor.text = book.author
+                    binding.tvQuantity.text = book.quantity.toString()
                     binding.tvPrice.text = book.price.toString()
+                    Glide.with(binding.root.context)
+                        .load(book.imageUri)
+                        .into(binding.imgSelectedBook)
                 }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
-        val binding = ItemBookBinding.inflate(
+        val binding = ItemBookAdminBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

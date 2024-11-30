@@ -9,7 +9,7 @@ import androidx.room.Update
 import com.haunp.mybookstore.domain.entity.RateEntity
 
 @Dao
-interface CommentDao {
+interface RateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertComment(rateBook: RateEntity)
 

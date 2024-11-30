@@ -9,7 +9,7 @@ class AdminUseCase (private val repository: IAdminRepository) {
     fun getAllBooks(): LiveData<List<BookEntity>> {
         return repository.getAllBooks()
     }
-    fun getAllCategory(): LiveData<List<CategoryEntity>> {
+    fun getAllCategories(): LiveData<List<CategoryEntity>> {
         return repository.getAllCategory()
     }
     suspend operator fun invoke(book: BookEntity) {
