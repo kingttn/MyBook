@@ -43,7 +43,7 @@ var viewModelModule = module {
     viewModel { CategoryAdminViewModel(get(),get()) }
     viewModel { StatisticalViewModel() }
     viewModel { CategoryUserViewModel() }
-    viewModel { HomeViewModel() }
+    viewModel { HomeViewModel(get()) }
     viewModel { SearchViewModel() }
     viewModel { SettingViewModel() }
 }

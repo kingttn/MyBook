@@ -4,6 +4,8 @@ import android.os.Bundle
 import com.haunp.mybookstore.databinding.FragmentRegisterBinding
 import com.haunp.mybookstore.domain.entity.UserEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
+import com.haunp.mybookstore.presenters.fragment.login.LoginFragment
+import com.haunp.mybookstore.presenters.fragment.main.MainActivity
 import org.koin.android.ext.android.inject
 
 class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
@@ -30,7 +32,6 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                 val phoneNumber = binding.edtPhone.text.toString()
                 val address = binding.edtAddress.text.toString()
                 val userEntity = UserEntity(
-                    userId = 0,
                     username = userName,
                     password = password,
                     email = email,
@@ -38,6 +39,7 @@ class RegisterFragment : BaseFragment<FragmentRegisterBinding>() {
                     address = address
                 )
                 viewModel.registerUser(userEntity)
+                (activity as MainActivity).showFragment(LoginFragment())
             }
         }
     }
