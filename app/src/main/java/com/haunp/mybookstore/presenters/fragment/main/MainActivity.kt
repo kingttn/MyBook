@@ -30,8 +30,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         settingViewModel.user.observe(this) {
-            Log.e("longtq", "onCreate: $it", )
-            setBottomNavigation(0)
+            setBottomNavigation(it?.role ?: 0)
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -87,7 +86,7 @@ class MainActivity : AppCompatActivity() {
     fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
-            .addToBackStack(null) // Thêm vào back stack để có thể quay lại fragment trước
+            .addToBackStack(null)
             .commit()
     }
 

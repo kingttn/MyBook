@@ -1,6 +1,7 @@
 package com.haunp.mybookstore.presenters.fragment.user.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.haunp.mybookstore.databinding.HomeFragmentBinding
 import com.haunp.mybookstore.presenters.base.BaseFragment
@@ -26,4 +27,5 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
             adapter.submitList(bookList)
         }
     }
+
 }

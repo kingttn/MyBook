@@ -6,9 +6,7 @@ import com.haunp.mybookstore.domain.entity.CategoryEntity
 import com.haunp.mybookstore.domain.repository.IAdminRepository
 
 class AdminUseCase (private val repository: IAdminRepository) {
-    fun getAllBooks(): LiveData<List<BookEntity>> {
-        return repository.getAllBooks()
-    }
+
     fun getAllCategories(): LiveData<List<CategoryEntity>> {
         return repository.getAllCategory()
     }

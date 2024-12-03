@@ -3,10 +3,13 @@ package com.haunp.mybookstore.di
 import androidx.room.Room
 import com.haunp.mybookstore.data.database.db.AppDatabase
 import com.haunp.mybookstore.data.repository.AdminRepositoryImpl
+import com.haunp.mybookstore.data.repository.BookRepositoryImpl
 import com.haunp.mybookstore.data.repository.UserRepositoryImpl
 import com.haunp.mybookstore.domain.repository.IAdminRepository
+import com.haunp.mybookstore.domain.repository.IBookRepository
 import com.haunp.mybookstore.domain.repository.IUserRepository
 import com.haunp.mybookstore.domain.usecase.AdminUseCase
+import com.haunp.mybookstore.domain.usecase.GetListBookUseCase
 import com.haunp.mybookstore.domain.usecase.LoginUseCase
 import com.haunp.mybookstore.domain.usecase.RegisterUseCase
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookViewModel
@@ -53,11 +56,13 @@ var useCaseModule = module {
     factory { RegisterUseCase(get()) }
     factory { LoginUseCase(get()) }
     factory { AdminUseCase(get()) }
+    factory { GetListBookUseCase(get()) }
 }
 
 var repositoryModule = module {
     single<IUserRepository> { UserRepositoryImpl(get(),get()) }
     single<IAdminRepository> { AdminRepositoryImpl(get(),get(),get(),get())}
+    single<IBookRepository> { BookRepositoryImpl(get()) }
 }
 
 val databaseModule = module {

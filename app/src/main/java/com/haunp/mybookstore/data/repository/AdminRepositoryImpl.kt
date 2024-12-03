@@ -18,10 +18,6 @@ class AdminRepositoryImpl(
     private val orderDao: OrderDao
 ) : IAdminRepository {
 
-    override fun getAllBooks(): LiveData<List<BookEntity>> {
-        return bookDao.getAllBooks()
-    }
-
     override suspend fun addBook(bookEntity: BookEntity) {
         return bookDao.insertBook(bookEntity)
     }

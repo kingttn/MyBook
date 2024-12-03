@@ -4,12 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.haunp.mybookstore.databinding.BookFragmentBinding
 import com.haunp.mybookstore.domain.entity.BookEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
+import com.haunp.mybookstore.presenters.fragment.user.setting.SettingViewModel
 import org.koin.android.ext.android.inject
 import java.util.Locale
 
@@ -23,6 +28,7 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
     override fun getDataBinding(): BookFragmentBinding {
         return BookFragmentBinding.inflate(layoutInflater)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
@@ -31,7 +37,6 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
         val adapter = BookAdapter()
         binding.bookAdminRecyclerView.adapter = adapter
         binding.bookAdminRecyclerView.layoutManager = LinearLayoutManager(context)
-
         viewModel.books.observe(viewLifecycleOwner) { bookList ->
             adapter.submitList(bookList)
         }

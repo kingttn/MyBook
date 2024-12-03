@@ -42,6 +42,9 @@ class SettingFragment: BaseFragment<SettingFragmentBinding>() {
             btnLogin.setOnClickListener {
                 (activity as MainActivity).showFragment(LoginFragment())
             }
+            btnLogout.setOnClickListener {
+                settingViewModel.logout()
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.haunp.mybookstore.presenters.fragment.admin.book
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
     private val books = mutableListOf<BookEntity>() // Danh sách dữ liệu hiển thị
 
     fun submitList(newBooks: List<BookEntity>){
+        Log.e("longtqz", "submitList: $newBooks", )
         books.clear()
         books.addAll(newBooks)
         notifyDataSetChanged()

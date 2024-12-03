@@ -12,4 +12,10 @@ class SettingViewModel : ViewModel() {
     fun setUser(user: UserEntity){
         _user.value = user
     }
+
+    fun logout(){
+        _user.value = null
+    }
+
+
 }

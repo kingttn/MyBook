@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.haunp.mybookstore.domain.entity.BookEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BookDao {
@@ -26,7 +27,7 @@ interface BookDao {
 
     // Loại bỏ suspend và để Room tự động chuyển đổi thành LiveData
     @Query("SELECT * FROM books")
-    fun getAllBooks(): LiveData<List<BookEntity>>
+    fun getAllBooks(): Flow<List<BookEntity>>
 
     @Query("SELECT * FROM books WHERE bookId = :bookId")
     suspend fun getBookById(bookId: Int): BookEntity?

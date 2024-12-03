@@ -7,7 +7,6 @@ import com.haunp.mybookstore.domain.entity.OrderEntity
 import com.haunp.mybookstore.domain.entity.UserEntity
 
 interface IAdminRepository {
-    fun getAllBooks(): LiveData<List<BookEntity>>
     suspend fun addBook(bookEntity: BookEntity)
 //    suspend fun deleteBook(id: Int)
     suspend fun updateBook(bookEntity: BookEntity)
