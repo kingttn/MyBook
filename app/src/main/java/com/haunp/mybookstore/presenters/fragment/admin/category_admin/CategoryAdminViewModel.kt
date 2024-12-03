@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haunp.mybookstore.domain.entity.CategoryEntity
-import com.haunp.mybookstore.domain.repository.IAdminRepository
 import com.haunp.mybookstore.domain.usecase.AddCateUseCase
 import com.haunp.mybookstore.domain.usecase.GetCateUseCase
 import kotlinx.coroutines.Job

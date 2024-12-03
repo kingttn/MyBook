@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.haunp.mybookstore.R
+import com.haunp.mybookstore.domain.entity.UserEntity
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.admin.category_admin.CategoryAdminFragment
 import com.haunp.mybookstore.presenters.fragment.admin.statistical.StatisticalFragment
@@ -28,9 +29,9 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             showFragment(HomeFragment())
         }
-
         settingViewModel.user.observe(this) {
             setBottomNavigation(it?.role ?: 0)
+
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->

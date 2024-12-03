@@ -13,7 +13,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : ViewModel() {
     private val _loginResult = MutableLiveData<UserEntity>()
     val loginResult: LiveData<UserEntity> get() = _loginResult
 
-    fun login(username: String, password: String) {
+    fun login(username: String, password: String){
         viewModelScope.launch {
             val user = loginUseCase.invoke(username, password)
             _loginResult.value = user

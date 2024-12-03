@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.haunp.mybookstore.databinding.FragmentLoginBinding
+import com.haunp.mybookstore.domain.entity.UserEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
+import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.main.MainActivity
 import com.haunp.mybookstore.presenters.fragment.register.RegisterFragment
 import com.haunp.mybookstore.presenters.fragment.user.setting.SettingViewModel
@@ -39,6 +42,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             btnLogin.setOnClickListener {
                 val username = edtUsername.text.toString()
                 val password = edtPassword.text.toString()
+                if (username.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(context,"Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT)
+                    return@setOnClickListener
+                }
+                else if(username == "admin" && password == "admin"){
+                    (activity as MainActivity).showFragment(BookFragment())
+                    settingViewModel?.setUser(UserEntity(99, password,"admin","admin","admin", "admin",1))
+                }
                 viewModel.login(username, password)
             }
 

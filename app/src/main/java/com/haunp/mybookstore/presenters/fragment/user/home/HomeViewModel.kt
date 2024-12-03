@@ -10,23 +10,11 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.haunp.mybookstore.domain.entity.BookEntity
-import com.haunp.mybookstore.domain.usecase.AdminUseCase
 import com.haunp.mybookstore.domain.usecase.GetListBookUseCase
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val getListBookUseCase: GetListBookUseCase) : ViewModel() {
-
-    init {
-        Log.e("longtq", "init viewmodel: ", )
+    val books: LiveData<List<BookEntity>> = liveData {
+        emitSource(getListBookUseCase().asLiveData())
     }
-
-   val books : LiveData<List<BookEntity>> = liveData {
-       emitSource(getListBookUseCase().asLiveData())
-   }
-=======
-import com.haunp.mybookstore.domain.usecase.GetBookUseCase
->>>>>>> Stashed changes
-
-class HomeViewModel(private val getBookUseCase: GetBookUseCase) : ViewModel() {
-    val books = getBookUseCase.invoke()
 }

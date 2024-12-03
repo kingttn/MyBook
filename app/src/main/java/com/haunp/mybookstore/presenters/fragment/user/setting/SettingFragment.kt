@@ -48,11 +48,7 @@ class SettingFragment: BaseFragment<SettingFragmentBinding>() {
             btnLogin.setOnClickListener {
                 (activity as MainActivity).showFragment(LoginFragment())
             }
-<<<<<<< Updated upstream
-            btnLogout.setOnClickListener {
-=======
             btnLogout.setOnClickListener{
->>>>>>> Stashed changes
                 settingViewModel.logout()
             }
         }
