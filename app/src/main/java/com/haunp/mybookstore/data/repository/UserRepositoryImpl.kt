@@ -5,9 +5,14 @@ import com.haunp.mybookstore.data.database.dao.UserDao
 import com.haunp.mybookstore.domain.entity.CartEntity
 import com.haunp.mybookstore.domain.entity.UserEntity
 import com.haunp.mybookstore.domain.repository.IUserRepository
+import kotlinx.coroutines.flow.Flow
 
 class UserRepositoryImpl(private val userDao: UserDao,private val cartDao: CartDao)
     : IUserRepository {
+    override fun getAllUser(): Flow<List<UserEntity>> {
+        return userDao.getAllUsers()
+    }
+
     override suspend fun registerUser(userEntity: UserEntity): Long {
         return userDao.insertUser(userEntity)
     }

@@ -1,14 +1,13 @@
 package com.haunp.mybookstore.data.repository
 
-import androidx.lifecycle.LiveData
 import com.haunp.mybookstore.data.database.dao.CategoryDao
-import com.haunp.mybookstore.domain.entity.BookEntity
 import com.haunp.mybookstore.domain.entity.CategoryEntity
 import com.haunp.mybookstore.domain.repository.ICategoryRepository
+import kotlinx.coroutines.flow.Flow
 
 class CategoryRepositoryImpl(private var categoryDao: CategoryDao): ICategoryRepository {
 
-    override fun getAllCategory(): LiveData<List<CategoryEntity>> {
+    override fun getAllCategory(): Flow<List<CategoryEntity>> {
         return categoryDao.getAllCategory()
     }
 

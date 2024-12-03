@@ -28,11 +28,6 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
     override fun getDataBinding(): BookFragmentBinding {
         return BookFragmentBinding.inflate(layoutInflater)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
     override fun initView() {
         val adapter = BookAdapter()
         binding.bookAdminRecyclerView.adapter = adapter

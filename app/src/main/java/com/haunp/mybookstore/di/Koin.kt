@@ -3,13 +3,18 @@ package com.haunp.mybookstore.di
 import androidx.room.Room
 import com.haunp.mybookstore.data.database.db.AppDatabase
 import com.haunp.mybookstore.data.repository.BookRepositoryImpl
+import com.haunp.mybookstore.data.repository.CartRepositoryImpl
 import com.haunp.mybookstore.data.repository.CategoryRepositoryImpl
 import com.haunp.mybookstore.data.repository.UserRepositoryImpl
 import com.haunp.mybookstore.domain.repository.IBookRepository
+import com.haunp.mybookstore.domain.repository.ICartRepository
 import com.haunp.mybookstore.domain.repository.ICategoryRepository
 import com.haunp.mybookstore.domain.repository.IUserRepository
 import com.haunp.mybookstore.domain.usecase.AddBookUseCase
+import com.haunp.mybookstore.domain.usecase.AddCateUseCase
+import com.haunp.mybookstore.domain.usecase.GetAccountUseCase
 import com.haunp.mybookstore.domain.usecase.GetCateUseCase
+import com.haunp.mybookstore.domain.usecase.GetListBookUseCase
 import com.haunp.mybookstore.domain.usecase.LoginUseCase
 import com.haunp.mybookstore.domain.usecase.RegisterUseCase
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookViewModel
@@ -42,7 +47,7 @@ var viewModelModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { LoginViewModel(get()) }
     viewModel { BookViewModel(get(),get()) }
-    viewModel { UserViewModel() }
+    viewModel { UserViewModel(get(),get()) }
     viewModel { CategoryAdminViewModel(get(),get()) }
     viewModel { StatisticalViewModel() }
     viewModel { CategoryUserViewModel() }
@@ -55,16 +60,19 @@ var viewModelModule = module {
 var useCaseModule = module {
     factory { RegisterUseCase(get()) }
     factory { LoginUseCase(get()) }
-    factory { GetBookUseCase(get()) }
+    factory { AddCateUseCase(get()) }
     factory { AddBookUseCase(get()) }
+    factory { GetListBookUseCase(get()) }
     factory { GetCateUseCase(get()) }
-    factory { AddBookUseCase(get()) }
+    factory { GetAccountUseCase(get()) }
+
 }
 
 var repositoryModule = module {
     single<IUserRepository> { UserRepositoryImpl(get(),get()) }
     single<IBookRepository>{ BookRepositoryImpl(get()) }
     single<ICategoryRepository>{ CategoryRepositoryImpl(get()) }
+    single<ICartRepository> { CartRepositoryImpl(get(),get()) }
 }
 
 val databaseModule = module {

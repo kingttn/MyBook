@@ -1,12 +1,12 @@
 package com.haunp.mybookstore.data.database.dao
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.haunp.mybookstore.domain.entity.UserEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -21,5 +21,5 @@ interface UserDao {
     suspend fun updateUser(user: UserEntity)
 
     @Query("SELECT * FROM users")
-    suspend fun getAllUsers(): List<UserEntity>
+    fun getAllUsers(): Flow<List<UserEntity>>
 }

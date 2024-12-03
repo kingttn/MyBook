@@ -1,13 +1,12 @@
 package com.haunp.mybookstore.data.database.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.haunp.mybookstore.domain.entity.CategoryEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
@@ -18,7 +17,7 @@ interface CategoryDao {
     suspend fun updateCategory(category: CategoryEntity)
 
     @Query("SELECT * FROM categories")
-    fun getAllCategory(): LiveData<List<CategoryEntity>>
+    fun getAllCategory(): Flow<List<CategoryEntity>>
 
     @Query("DELETE FROM categories WHERE categoryId = :id")
     suspend fun deleteCategory(id: Int)
