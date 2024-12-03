@@ -12,10 +12,16 @@ class SettingViewModel : ViewModel() {
     fun setUser(user: UserEntity){
         _user.value = user
     }
+<<<<<<< Updated upstream
 
     fun logout(){
         _user.value = null
     }
 
 
+=======
+    fun logout(){
+        _user.value = null
+    }
+>>>>>>> Stashed changes
 }

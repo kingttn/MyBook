@@ -13,10 +13,9 @@ import com.haunp.mybookstore.domain.repository.IAdminRepository
 
 class AdminRepositoryImpl(
     private val userDao: UserDao,
-    private val categoryDao: CategoryDao,
-    private val bookDao: BookDao,
     private val orderDao: OrderDao
 ) : IAdminRepository {
+<<<<<<< Updated upstream
 
     override suspend fun addBook(bookEntity: BookEntity) {
         return bookDao.insertBook(bookEntity)
@@ -45,6 +44,8 @@ class AdminRepositoryImpl(
         return categoryDao.updateCategory(categoryEntity)
     }
 
+=======
+>>>>>>> Stashed changes
     override suspend fun updateOrder(orderEntity: OrderEntity) {
         return orderDao.updateOrder(orderEntity)
     }

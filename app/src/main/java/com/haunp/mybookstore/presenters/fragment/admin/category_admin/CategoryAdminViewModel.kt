@@ -7,33 +7,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haunp.mybookstore.domain.entity.CategoryEntity
 import com.haunp.mybookstore.domain.repository.IAdminRepository
-import com.haunp.mybookstore.domain.usecase.AdminUseCase
+import com.haunp.mybookstore.domain.usecase.AddCateUseCase
+import com.haunp.mybookstore.domain.usecase.GetCateUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class CategoryAdminViewModel(private val bookUseCase: AdminUseCase, private val adminRepository: IAdminRepository) : ViewModel() {
+class CategoryAdminViewModel(private var getCateUseCase : GetCateUseCase, private var addCateUseCase : AddCateUseCase) : ViewModel() {
 
-    val categories : LiveData<List<CategoryEntity>> = bookUseCase.getAllCategories()
+    val categories : LiveData<List<CategoryEntity>> = getCateUseCase.invoke()
     fun addCategory(categoryEntity: CategoryEntity): Job {
         return viewModelScope.launch {
-            bookUseCase.invoke(categoryEntity)
+            addCateUseCase.invoke(categoryEntity)
         }
-    }
-//    fun addCategory(name: String, imageUri: Uri?) {
-//        val newCategory = imageUri?.toString()?.let {
-//            CategoryEntity(
-//                name = name,
-//                imageUri = it
-//            )
-//        }
-//        val currentList = _categories.value ?: mutableListOf()
-//        newCategory?.let { currentList.add(it) }
-//        _categories.value = currentList
-//    }
-//    suspend fun deleteCategory(id: Int) {
-//        adminRepository.deleteCategory(id)
-//    }
-    suspend fun updateCategory(categoryEntity: CategoryEntity) {
-        adminRepository.updateCategory(categoryEntity)
     }
 }

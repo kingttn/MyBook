@@ -33,7 +33,13 @@ class SettingFragment: BaseFragment<SettingFragmentBinding>() {
             if (user != null) {
                 binding.btnLogin.visibility = View.GONE
                 binding.tvUsername.visibility = View.VISIBLE
-            } else {
+                binding.btnLogout.visibility = View.GONE
+            } else if(user == null){
+                binding.btnLogin.visibility = View.GONE
+                binding.tvUsername.visibility = View.VISIBLE
+                binding.btnLogout.visibility = View.GONE
+            }
+            else {
                 binding.btnLogin.visibility = View.VISIBLE
                 binding.tvUsername.visibility = View.GONE
             }
@@ -42,7 +48,11 @@ class SettingFragment: BaseFragment<SettingFragmentBinding>() {
             btnLogin.setOnClickListener {
                 (activity as MainActivity).showFragment(LoginFragment())
             }
+<<<<<<< Updated upstream
             btnLogout.setOnClickListener {
+=======
+            btnLogout.setOnClickListener{
+>>>>>>> Stashed changes
                 settingViewModel.logout()
             }
         }

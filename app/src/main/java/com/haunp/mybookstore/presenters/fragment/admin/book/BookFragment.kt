@@ -91,7 +91,7 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                     imageUri = imageUriString
 
                 )
-                viewModel.updateBook(bookEntity)
+//                viewModel.updateBook(bookEntity)
             }
         }
     }

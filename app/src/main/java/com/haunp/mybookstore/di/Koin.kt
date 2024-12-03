@@ -4,12 +4,24 @@ import androidx.room.Room
 import com.haunp.mybookstore.data.database.db.AppDatabase
 import com.haunp.mybookstore.data.repository.AdminRepositoryImpl
 import com.haunp.mybookstore.data.repository.BookRepositoryImpl
+<<<<<<< Updated upstream
 import com.haunp.mybookstore.data.repository.UserRepositoryImpl
 import com.haunp.mybookstore.domain.repository.IAdminRepository
 import com.haunp.mybookstore.domain.repository.IBookRepository
 import com.haunp.mybookstore.domain.repository.IUserRepository
 import com.haunp.mybookstore.domain.usecase.AdminUseCase
 import com.haunp.mybookstore.domain.usecase.GetListBookUseCase
+=======
+import com.haunp.mybookstore.data.repository.CategoryRepositoryImpl
+import com.haunp.mybookstore.data.repository.UserRepositoryImpl
+import com.haunp.mybookstore.domain.repository.IAdminRepository
+import com.haunp.mybookstore.domain.repository.IBookRepository
+import com.haunp.mybookstore.domain.repository.ICategoryRepository
+import com.haunp.mybookstore.domain.repository.IUserRepository
+import com.haunp.mybookstore.domain.usecase.AddBookUseCase
+import com.haunp.mybookstore.domain.usecase.GetBookUseCase
+import com.haunp.mybookstore.domain.usecase.GetCateUseCase
+>>>>>>> Stashed changes
 import com.haunp.mybookstore.domain.usecase.LoginUseCase
 import com.haunp.mybookstore.domain.usecase.RegisterUseCase
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookViewModel
@@ -55,14 +67,27 @@ var viewModelModule = module {
 var useCaseModule = module {
     factory { RegisterUseCase(get()) }
     factory { LoginUseCase(get()) }
+<<<<<<< Updated upstream
     factory { AdminUseCase(get()) }
     factory { GetListBookUseCase(get()) }
+=======
+    factory { GetBookUseCase(get()) }
+    factory { AddBookUseCase(get()) }
+    factory { GetCateUseCase(get()) }
+    factory { AddBookUseCase(get()) }
+>>>>>>> Stashed changes
 }
 
 var repositoryModule = module {
     single<IUserRepository> { UserRepositoryImpl(get(),get()) }
+<<<<<<< Updated upstream
     single<IAdminRepository> { AdminRepositoryImpl(get(),get(),get(),get())}
     single<IBookRepository> { BookRepositoryImpl(get()) }
+=======
+    single<IAdminRepository> { AdminRepositoryImpl(get(),get())}
+    single<IBookRepository>{ BookRepositoryImpl(get()) }
+    single<ICategoryRepository>{ CategoryRepositoryImpl(get()) }
+>>>>>>> Stashed changes
 }
 
 val databaseModule = module {

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+<<<<<<< Updated upstream
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
@@ -22,5 +23,10 @@ class HomeViewModel(private val getListBookUseCase: GetListBookUseCase) : ViewMo
    val books : LiveData<List<BookEntity>> = liveData {
        emitSource(getListBookUseCase().asLiveData())
    }
+=======
+import com.haunp.mybookstore.domain.usecase.GetBookUseCase
+>>>>>>> Stashed changes
 
+class HomeViewModel(private val getBookUseCase: GetBookUseCase) : ViewModel() {
+    val books = getBookUseCase.invoke()
 }
