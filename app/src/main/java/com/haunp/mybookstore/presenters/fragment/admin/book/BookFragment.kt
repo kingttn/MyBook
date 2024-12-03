@@ -34,6 +34,7 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
         binding.bookAdminRecyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.books.observe(viewLifecycleOwner) { bookList ->
             adapter.submitList(bookList)
+            Log.d("Database", "Books: $bookList")
         }
         binding{
             btnSelectBook.setOnClickListener {
