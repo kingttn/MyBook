@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
             showFragment(HomeFragment())
         }
         settingViewModel.user.observe(this) {
-            setBottomNavigation(0)
-
+            setBottomNavigation(it?.role ?: 0)
+            Log.d("RoleUser", "Role: $it")
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
