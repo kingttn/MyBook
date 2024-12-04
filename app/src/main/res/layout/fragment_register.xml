@@ -2,49 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:background="@color/orange"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Đăng ký" />
+
     <EditText
         android:id="@+id/edt_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="username"
+        android:hint="Tên đăng nhập"
         android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/edt_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="Mật khẩu"
         android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/edt_cfm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Confirm Password"
+        android:hint="Xác nhận mật khẩu"
         android:inputType="textPassword"/>
     <EditText
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="email"
+        android:hint="Email"
         android:inputType="textEmailAddress"/>
     <EditText
         android:id="@+id/edt_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="phone"
+        android:hint="Số điện thoại"
         android:inputType="phone"/>
     <EditText
         android:id="@+id/edt_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="address"
+        android:hint="Địa chỉ"
         android:inputType="text"/>
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"/>
+        android:backgroundTint="@color/red_100"
+        android:text="Đăng ký"/>
 </LinearLayout>

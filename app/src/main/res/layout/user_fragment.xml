@@ -4,64 +4,86 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:text="Quản Lý Người Dùng" />
+
+    <EditText
+        android:id="@+id/edt_ID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID User (Khi xóa hoặc sửa)"/>
     <EditText
         android:id="@+id/edt_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name Account"/>
+        android:hint="Tên User"/>
     <EditText
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email Account"/>
+        android:hint="Email User"/>
     <EditText
         android:id="@+id/edt_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password Account"/>
+        android:hint="Mật khẩu"/>
     <EditText
         android:id="@+id/edt_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone Account"/>
+        android:hint="Số điện thoại"/>
     <EditText
         android:id="@+id/edt_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Address Account"/>
+        android:hint="Địa chỉ"/>
     <EditText
         android:id="@+id/edt_role"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Role Account"/>
+        android:hint="Role User"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/btnAdd"
-            android:layout_width="wrap_content"
+            android:layout_width="146dp"
             android:layout_height="wrap_content"
-            android:text="Add"
             android:layout_gravity="left"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/red_100"
+            android:text="Thêm User" />
+
         <Button
             android:id="@+id/btnDel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/red_100"
+            android:text="Xóa User" />
+
         <Button
             android:id="@+id/btnUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update"
             android:layout_gravity="end"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/red_100"
+            android:text="Cập nhật User" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

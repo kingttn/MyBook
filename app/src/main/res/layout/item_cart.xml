@@ -31,7 +31,7 @@
                 android:id="@+id/tvTittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nguyen Ly Ke Toan" />
+                android:text="Nguyên Lý Kế Toán" />
             <TextView
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
@@ -43,12 +43,13 @@
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <Button
-                    android:id="@+id/btnPlus"
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="18dp"
+                    android:layout_height="21dp"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="-"/>
+                    android:text="-" />
 
                 <TextView
                     android:id="@+id/tvQuantity"
@@ -57,11 +58,14 @@
                     android:text="1"
                     android:gravity="center"/>
 
-                <Button
-                    android:id="@+id/btnMinus"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="+"/>
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="18dp"
+                    android:layout_height="21dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="+" />
+
             </LinearLayout>
 
         </LinearLayout>
