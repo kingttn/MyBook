@@ -10,6 +10,7 @@ import com.haunp.mybookstore.databinding.SettingFragmentBinding
 import com.haunp.mybookstore.presenters.base.BaseFragment
 import com.haunp.mybookstore.presenters.fragment.login.LoginFragment
 import com.haunp.mybookstore.presenters.fragment.main.MainActivity
+import com.haunp.mybookstore.presenters.fragment.user.home.HomeFragment
 
 class SettingFragment: BaseFragment<SettingFragmentBinding>() {
     private lateinit var settingViewModel: SettingViewModel
@@ -28,20 +29,18 @@ class SettingFragment: BaseFragment<SettingFragmentBinding>() {
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
+
     override fun initView() {
+        settingViewModel = ViewModelProvider(requireActivity())[SettingViewModel::class.java]
         settingViewModel.user.observe(viewLifecycleOwner) { user ->
             if (user != null) {
                 binding.btnLogin.visibility = View.GONE
                 binding.tvUsername.visibility = View.VISIBLE
-                binding.btnLogout.visibility = View.GONE
-            } else if(user == null){
-                binding.btnLogin.visibility = View.GONE
-                binding.tvUsername.visibility = View.VISIBLE
-                binding.btnLogout.visibility = View.GONE
-            }
-            else {
+                binding.btnLogout.visibility = View.VISIBLE
+            } else{
                 binding.btnLogin.visibility = View.VISIBLE
                 binding.tvUsername.visibility = View.GONE
+                binding.btnLogout.visibility = View.GONE
             }
         }
         binding {

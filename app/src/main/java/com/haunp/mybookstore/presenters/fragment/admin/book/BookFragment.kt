@@ -1,6 +1,7 @@
 package com.haunp.mybookstore.presenters.fragment.admin.book
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.haunp.mybookstore.databinding.BookFragmentBinding
 import com.haunp.mybookstore.domain.entity.BookEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
@@ -34,8 +36,10 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
         binding.bookAdminRecyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.books.observe(viewLifecycleOwner) { bookList ->
             adapter.submitList(bookList)
-            Log.d("Database", "Books: $bookList")
+            saveBooksToSharedPreferences(bookList)
+            Log.d("hau.np", "BooksBookFragment: $bookList")
         }
+
         binding{
             btnSelectBook.setOnClickListener {
                 val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
@@ -98,6 +102,18 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
             selectedImageUri = result.data?.data
         }
     }
+    private fun saveBooksToSharedPreferences(bookList: List<BookEntity>) {
+        val sharedPreferences = requireContext().getSharedPreferences("BookAppPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
 
+
+        // Chuyển danh sách thành JSON
+        val gson = Gson()
+        val json = gson.toJson(bookList)
+
+        // Lưu JSON vào SharedPreferences
+        editor.putString("book_list", json)
+        editor.apply()
+    }
 
 }

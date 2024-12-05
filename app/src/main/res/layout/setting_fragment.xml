@@ -67,7 +67,7 @@
                 android:backgroundTint="@color/white"
                 android:text="Thoát"
                 android:textColor="@color/black"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </LinearLayout>
 
         <TextView

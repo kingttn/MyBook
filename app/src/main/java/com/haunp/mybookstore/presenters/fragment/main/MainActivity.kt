@@ -18,6 +18,7 @@ import com.haunp.mybookstore.presenters.fragment.user.home.HomeFragment
 import com.haunp.mybookstore.presenters.fragment.user.search.SearchFragment
 import com.haunp.mybookstore.presenters.fragment.user.setting.SettingFragment
 import com.haunp.mybookstore.presenters.fragment.user.setting.SettingViewModel
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var settingViewModel: SettingViewModel
@@ -30,8 +31,7 @@ class MainActivity : AppCompatActivity() {
             showFragment(HomeFragment())
         }
         settingViewModel.user.observe(this) {
-            setBottomNavigation(it?.role ?: 0)
-            Log.d("RoleUser", "Role: $it")
+            setBottomNavigation(it?.role?: 2)
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        logOut()
     }
     fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
@@ -91,21 +92,41 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    fun logOut(){
+        val logout = findViewById<View>(R.id.fbn_logOut)
+        logout.setOnClickListener {
+            settingViewModel.logout()
+        }
+    }
+
     private fun setBottomNavigation(role: Int) {
         val bottomNavigationViewUser = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
         val ftbCart = findViewById<View>(R.id.fbn_cart)
+        val ftbLogOut = findViewById<View>(R.id.fbn_logOut)
         val bottomNavigationViewAdmin =
             findViewById<BottomNavigationView>(R.id.bottom_nav_menu_admin)
-
-        if (role == 0) {
-            bottomNavigationViewUser.visibility = View.GONE
-            bottomNavigationViewAdmin.visibility = View.VISIBLE
-            ftbCart.visibility = View.GONE
-            showFragment(BookFragment())
-        } else if (role == 1) {
-            bottomNavigationViewAdmin.visibility = View.GONE
-            bottomNavigationViewUser.visibility = View.VISIBLE
-            showFragment(HomeFragment())
+        when (role) {
+            0 -> {
+                bottomNavigationViewUser.visibility = View.GONE
+                bottomNavigationViewAdmin.visibility = View.VISIBLE
+                ftbCart.visibility = View.GONE
+                ftbLogOut.visibility = View.VISIBLE
+                showFragment(BookFragment())
+            }
+            1 -> {
+                bottomNavigationViewAdmin.visibility = View.GONE
+                bottomNavigationViewUser.visibility = View.VISIBLE
+                ftbLogOut.visibility = View.GONE
+                ftbCart.visibility = View.VISIBLE
+                showFragment(HomeFragment())
+            }
+            2 -> {
+                bottomNavigationViewAdmin.visibility = View.GONE
+                bottomNavigationViewUser.visibility = View.VISIBLE
+                ftbLogOut.visibility = View.GONE
+                ftbCart.visibility = View.GONE
+                showFragment(HomeFragment())
+            }
         }
     }
 }

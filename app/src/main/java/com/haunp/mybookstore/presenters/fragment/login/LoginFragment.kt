@@ -1,6 +1,7 @@
 package com.haunp.mybookstore.presenters.fragment.login
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun initView() {
         viewModel.loginResult.observe(viewLifecycleOwner) {
-            settingViewModel?.setUser(it)
+            Log.d("hau.np", "LoginFrag result: $it")
+            if (it != null) {
+                Toast.makeText(context, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
+                (activity as MainActivity).showFragment(BookFragment())
+                settingViewModel?.setUser(it)
+            }
         }
         binding {
             btnLogin.setOnClickListener {
@@ -48,7 +54,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 }
                 else if(username == "admin" && password == "admin"){
                     (activity as MainActivity).showFragment(BookFragment())
-                    settingViewModel?.setUser(UserEntity(99, password,"admin","admin","admin", "admin",1))
+                    settingViewModel?.setUser(UserEntity(99, password,"admin","admin","admin", "admin",0))
                 }
                 viewModel.login(username, password)
             }

@@ -35,12 +35,12 @@ class CategoryAdminFragment : BaseFragment<CategoryAdminFragmentBinding>() {
                 imagePickerLauncher.launch(intent)
             }
             ftbAdd.setOnClickListener {
-                val name = edtName.text.toString().trim()
+                val name = edtNameCate.text.toString().trim()
                 val imageUriString = selectedImageUri?.toString() ?: ""
                 if (name.isNotEmpty()) {
                     val categoryEntity = CategoryEntity(name = name, imageUri = imageUriString)
                     viewModel.addCategory(categoryEntity)
-                    edtName.text.clear() // Xóa dữ liệu sau khi thêm
+                    edtNameCate.text.clear() // Xóa dữ liệu sau khi thêm
                 } else {
                     Toast.makeText(context, "Vui lòng nhập tên danh mục!", Toast.LENGTH_SHORT).show()
                 }

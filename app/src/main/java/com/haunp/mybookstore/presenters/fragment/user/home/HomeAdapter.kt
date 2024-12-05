@@ -12,6 +12,7 @@ import com.haunp.mybookstore.presenters.fragment.admin.book.BookAdapter.BookView
 class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     private val books = mutableListOf<BookEntity>()
     fun submitList(newBooks: List<BookEntity>){
+        books.clear()
         books.addAll(newBooks)
         notifyDataSetChanged()
     }
