@@ -13,6 +13,7 @@ import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.admin.category_admin.CategoryAdminFragment
 import com.haunp.mybookstore.presenters.fragment.admin.statistical.StatisticalFragment
 import com.haunp.mybookstore.presenters.fragment.admin.user.UserFragment
+import com.haunp.mybookstore.presenters.fragment.user.cart.CartFragment
 import com.haunp.mybookstore.presenters.fragment.user.category_user.CategoryUserFragment
 import com.haunp.mybookstore.presenters.fragment.user.home.HomeFragment
 import com.haunp.mybookstore.presenters.fragment.user.search.SearchFragment
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         logOut()
+        ShowCartFragment()
     }
     fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
@@ -97,6 +99,13 @@ class MainActivity : AppCompatActivity() {
         logout.setOnClickListener {
             settingViewModel.logout()
         }
+    }
+    fun ShowCartFragment(){
+        val cart = findViewById<View>(R.id.fbn_cart)
+        cart.setOnClickListener {
+            showFragment(CartFragment())
+        }
+
     }
 
     private fun setBottomNavigation(role: Int) {
