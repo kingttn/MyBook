@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.haunp.mybookstore.R
@@ -46,36 +47,30 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupObservers()
+//        setupObservers()
     }
 
     override fun initView() {
         // Thiết lập adapter cho RecyclerView
         val adapter = HomeAdapter()
         binding.homeRecyclerView.adapter = adapter
-
+        binding.homeRecyclerView.layoutManager = LinearLayoutManager(context)
         // Lấy dữ liệu từ SharedPreferences và cập nhật adapter
         val bookList = getBooksFromSharedPreferences()
-        Log.d("hau.np", "Books: $bookList")
         adapter.submitList(bookList)
-        if (bookList.isNotEmpty()) {
-            adapter.submitList(bookList)
-        } else {
-            Log.d("hau.np", "Book list is empty, cannot update RecyclerView.")
-        }
         // Khởi động banner slideshow
         bannerImageView = binding.bannerImageView
         handler.post(slideshowRunnable)
     }
 
-    private fun setupObservers() {
-        // Lắng nghe LiveData từ ViewModel nếu cần đồng bộ thêm dữ liệu
-        viewModel.books.observe(viewLifecycleOwner) { books ->
-            saveBooksToSharedPreferences(books)
-            val adapter = binding.homeRecyclerView.adapter as? HomeAdapter
-            adapter?.submitList(books)
-        }
-    }
+//    private fun setupObservers() {
+//        // Lắng nghe LiveData từ ViewModel nếu cần đồng bộ thêm dữ liệu
+//        viewModel.books.observe(viewLifecycleOwner) { books ->
+//            saveBooksToSharedPreferences(books)
+//            val adapter = binding.homeRecyclerView.adapter as? HomeAdapter
+//            adapter?.submitList(books)
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -94,18 +89,5 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
         } else {
             emptyList()
         }
-    }
-
-    private fun saveBooksToSharedPreferences(bookList: List<BookEntity>) {
-        val sharedPreferences = requireContext().getSharedPreferences("BookAppPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-
-        // Chuyển danh sách thành JSON
-        val gson = Gson()
-        val json = gson.toJson(bookList)
-
-        // Lưu JSON vào SharedPreferences
-        editor.putString("book_list", json)
-        editor.apply()
     }
 }

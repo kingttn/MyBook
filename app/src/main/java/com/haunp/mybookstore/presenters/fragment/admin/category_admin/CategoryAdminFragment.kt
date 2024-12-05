@@ -1,11 +1,13 @@
 package com.haunp.mybookstore.presenters.fragment.admin.category_admin
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.haunp.mybookstore.databinding.CategoryAdminFragmentBinding
 import com.haunp.mybookstore.domain.entity.CategoryEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
@@ -28,13 +30,14 @@ class CategoryAdminFragment : BaseFragment<CategoryAdminFragmentBinding>() {
         // Lắng nghe LiveData và cập nhật RecyclerView
         viewModel.categories.observe(viewLifecycleOwner) { categoryList ->
             adapter.submitList(categoryList)
+            saveCategoriesToSharedPreferences(categoryList)
         }
         binding{
             btnSelectImage.setOnClickListener {
                 val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
                 imagePickerLauncher.launch(intent)
             }
-            ftbAdd.setOnClickListener {
+            btnAdd.setOnClickListener {
                 val name = edtNameCate.text.toString().trim()
                 val imageUriString = selectedImageUri?.toString() ?: ""
                 if (name.isNotEmpty()) {
@@ -53,5 +56,18 @@ class CategoryAdminFragment : BaseFragment<CategoryAdminFragmentBinding>() {
         if (result.resultCode == Activity.RESULT_OK) {
             selectedImageUri = result.data?.data
         }
+    }
+    private fun saveCategoriesToSharedPreferences(categoryList: List<CategoryEntity>) {
+        val sharedPreferences = requireContext().getSharedPreferences("CateAppPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+
+        // Chuyển danh sách thành JSON
+        val gson = Gson()
+        val json = gson.toJson(categoryList)
+
+        // Lưu JSON vào SharedPreferences
+        editor.putString("cate_list", json)
+        editor.apply()
     }
 }

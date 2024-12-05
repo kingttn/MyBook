@@ -10,7 +10,7 @@
 
         <!-- Danh sách loại sách -->
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recCategory"
+            android:id="@+id/categoryRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="24dp"/>

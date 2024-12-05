@@ -51,9 +51,9 @@ var viewModelModule = module {
     viewModel { UserViewModel(get(),get()) }
     viewModel { CategoryAdminViewModel(get(),get(),get()) }
     viewModel { StatisticalViewModel() }
-    viewModel { CategoryUserViewModel() }
+    viewModel { CategoryUserViewModel(get()) }
     viewModel { HomeViewModel(get()) }
-    viewModel { SearchViewModel() }
+    viewModel { SearchViewModel(get()) }
     viewModel { SettingViewModel() }
 }
 

@@ -1,5 +1,6 @@
 package com.haunp.mybookstore.presenters.fragment.user.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
