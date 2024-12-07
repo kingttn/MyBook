@@ -1,14 +1,14 @@
 package com.haunp.mybookstore.presenters.fragment.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.haunp.mybookstore.R
-import com.haunp.mybookstore.domain.entity.UserEntity
+import com.haunp.mybookstore.presenters.CoreViewModel
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.admin.category_admin.CategoryAdminFragment
 import com.haunp.mybookstore.presenters.fragment.admin.statistical.StatisticalFragment
@@ -19,9 +19,9 @@ import com.haunp.mybookstore.presenters.fragment.user.home.HomeFragment
 import com.haunp.mybookstore.presenters.fragment.user.search.SearchFragment
 import com.haunp.mybookstore.presenters.fragment.user.setting.SettingFragment
 import com.haunp.mybookstore.presenters.fragment.user.setting.SettingViewModel
-import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
+    private val coreViewModel: CoreViewModel by viewModels()
     private lateinit var settingViewModel: SettingViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,28 +32,32 @@ class MainActivity : AppCompatActivity() {
             showFragment(HomeFragment())
         }
         settingViewModel.user.observe(this) {
-            setBottomNavigation(it?.role?: 2)
+            setBottomNavigation(it?.role ?: 2)
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.nav_home -> {
                     showFragment(HomeFragment())
                     true
                 }
+
                 R.id.nav_category -> {
                     showFragment(CategoryUserFragment())
                     true
                 }
+
                 R.id.nav_search -> {
                     showFragment(SearchFragment())
                     true
                 }
+
                 R.id.nav_setting -> {
                     showFragment(SettingFragment())
                     true
                 }
-                else->false
+
+                else -> false
             }
         }
 
@@ -85,8 +89,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
         logOut()
-        ShowCartFragment()
+        showCartFragment()
     }
+
     fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
@@ -94,18 +99,18 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun logOut(){
+    private fun logOut() {
         val logout = findViewById<View>(R.id.fbn_logOut)
         logout.setOnClickListener {
             settingViewModel.logout()
         }
     }
-    fun ShowCartFragment(){
+
+    private fun showCartFragment() {
         val cart = findViewById<View>(R.id.fbn_cart)
         cart.setOnClickListener {
             showFragment(CartFragment())
         }
-
     }
 
     private fun setBottomNavigation(role: Int) {
@@ -122,6 +127,7 @@ class MainActivity : AppCompatActivity() {
                 ftbLogOut.visibility = View.VISIBLE
                 showFragment(BookFragment())
             }
+
             1 -> {
                 bottomNavigationViewAdmin.visibility = View.GONE
                 bottomNavigationViewUser.visibility = View.VISIBLE
@@ -129,6 +135,7 @@ class MainActivity : AppCompatActivity() {
                 ftbCart.visibility = View.VISIBLE
                 showFragment(HomeFragment())
             }
+
             2 -> {
                 bottomNavigationViewAdmin.visibility = View.GONE
                 bottomNavigationViewUser.visibility = View.VISIBLE

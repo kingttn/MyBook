@@ -49,7 +49,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 val username = edtUsername.text.toString()
                 val password = edtPassword.text.toString()
                 if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(context,"Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT)
+                    Toast.makeText(context,"Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 else if(username == "admin" && password == "admin"){
@@ -65,6 +65,4 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
         }
     }
-
-
 }

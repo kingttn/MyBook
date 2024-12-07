@@ -1,0 +1,20 @@
+1. Ở mainactivity hay các fragment nên chia các hàm riêng biệt ra
+Vd: Hàm khởi tạo view thì đặt là initView
+    Hàm khởi tạo các sự kiện thì đặt là initAction
+
+2. CoreViewmodel là viewmodel dùng chung cho tất cả các fragment có chung một tính năng
+Vd: Nếu muốn lưu trạng thái user đã login ở setting viewmodel như em đang cần thì em vứt nó ở coreviewmodel và
+các fragment đều observer nó là nó sẽ tự nhận giá trị
+
+A đã khởi tạo mẫu ở MainActivity và settingFragment nhá
+
+Còn các viewmodel khác không nhất thiết phải dùng
+
+private lateinit var settingViewModel: SettingViewModel
+settingViewModel = ViewModelProvider(this)[SettingViewModel::class.java]
+
+thay bằng
+
+private val settingViewModel: SettingViewModel by viewModels()
+
+3.
