@@ -17,4 +17,9 @@ thay bằng
 
 private val settingViewModel: SettingViewModel by viewModels()
 
-3.
+3. BookStoreManager là file lưu dữ liệu Cache.
+
+4. Tạo thêm màn hình khi click vào sách ở Home sẽ đi đến màn hình BookDetail thì
+ sẽ có nút thêm sách vào giỏ hàng
+
+ 5.

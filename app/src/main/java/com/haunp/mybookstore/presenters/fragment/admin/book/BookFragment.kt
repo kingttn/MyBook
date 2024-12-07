@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.haunp.mybookstore.databinding.BookFragmentBinding
@@ -24,7 +25,6 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
     private var selectedImageUri: Uri? = null
     private val viewModel: BookViewModel by inject()
 
-
     override var isTerminalBackKeyActive: Boolean = true
 
     override fun getDataBinding(): BookFragmentBinding {
@@ -33,11 +33,10 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
     override fun initView() {
         val adapter = BookAdapter()
         binding.bookAdminRecyclerView.adapter = adapter
-        binding.bookAdminRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.bookAdminRecyclerView.layoutManager = GridLayoutManager(context, 2)
         viewModel.books.observe(viewLifecycleOwner) { bookList ->
             adapter.submitList(bookList)
             saveBooksToSharedPreferences(bookList)
-            Log.d("hau.np", "BooksBookFragment: $bookList")
         }
 
         binding{
@@ -105,7 +104,6 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
     private fun saveBooksToSharedPreferences(bookList: List<BookEntity>) {
         val sharedPreferences = requireContext().getSharedPreferences("BookAppPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-
 
         // Chuyển danh sách thành JSON
         val gson = Gson()

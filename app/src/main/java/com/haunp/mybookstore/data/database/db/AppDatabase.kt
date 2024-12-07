@@ -20,7 +20,7 @@ import com.haunp.mybookstore.domain.entity.UserEntity
 @Database(
     entities = [UserEntity::class, BookEntity::class, CategoryEntity::class,
         CartEntity::class, OrderEntity::class, OrderItem::class, RateEntity::class],
-    version = 3
+    version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun getUserDao(): UserDao

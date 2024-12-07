@@ -9,15 +9,17 @@ import com.haunp.mybookstore.domain.entity.CartEntity
 
 @Dao
 interface CartDao {
+    // Thêm giỏ hàng mới hoặc cập nhật nếu đã tồn tại
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addToCart(cart: CartEntity) // Thay CartDao thành Cart
+    suspend fun upsertCart(cart: CartEntity)
 
-    @Query("SELECT * FROM cart WHERE userId = :userId")
-    suspend fun getCartByUserId(userId: Int): List<CartEntity>
+    // Lấy giỏ hàng của người dùng
+    @Query("SELECT * FROM carts WHERE userId = :userId")
+    suspend fun getCart(userId: Int): CartEntity?
 
-    @Delete
-    suspend fun removeFromCart(cart: CartEntity) // Sử dụng Cart thay vì shoppingCart
+    // Xóa giỏ hàng
+    @Query("DELETE FROM carts WHERE userId = :userId")
+    suspend fun clearCart(userId: Int)
 
-    @Query("UPDATE cart SET quantity = :quantity WHERE userId = :userId AND bookId = :productId")
-    suspend fun updateCartQuantity(userId: Int, productId: Int, quantity: Int)
+
 }

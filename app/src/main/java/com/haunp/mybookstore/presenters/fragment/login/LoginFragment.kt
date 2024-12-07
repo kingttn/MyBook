@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.haunp.mybookstore.databinding.FragmentLoginBinding
 import com.haunp.mybookstore.domain.entity.UserEntity
+import com.haunp.mybookstore.presenters.BookStoreManager
 import com.haunp.mybookstore.presenters.base.BaseFragment
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.main.MainActivity
@@ -37,11 +38,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     override fun initView() {
         viewModel.loginResult.observe(viewLifecycleOwner) {
-            Log.d("hau.np", "LoginFrag result: $it")
             if (it != null) {
                 Toast.makeText(context, "Đăng nhập thành công", Toast.LENGTH_SHORT).show()
                 (activity as MainActivity).showFragment(BookFragment())
                 settingViewModel?.setUser(it)
+                BookStoreManager.idUser = it.userId
             }
         }
         binding {

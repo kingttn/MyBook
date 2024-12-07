@@ -10,6 +10,7 @@ import com.haunp.mybookstore.presenters.fragment.login.LoginFragment
 import com.haunp.mybookstore.presenters.fragment.main.MainActivity
 
 class SettingFragment : BaseFragment<SettingFragmentBinding>() {
+    //shareViewModel
     private val coreViewModel: CoreViewModel by activityViewModels()
     private val settingViewModel: SettingViewModel by viewModels()
     override var isTerminalBackKeyActive: Boolean = true

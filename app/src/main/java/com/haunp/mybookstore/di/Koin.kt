@@ -73,7 +73,7 @@ var repositoryModule = module {
     single<IUserRepository> { UserRepositoryImpl(get(),get()) }
     single<IBookRepository>{ BookRepositoryImpl(get()) }
     single<ICategoryRepository>{ CategoryRepositoryImpl(get()) }
-    single<ICartRepository> { CartRepositoryImpl(get(),get()) }
+    single<ICartRepository> { CartRepositoryImpl(get()) }
 }
 
 val databaseModule = module {
