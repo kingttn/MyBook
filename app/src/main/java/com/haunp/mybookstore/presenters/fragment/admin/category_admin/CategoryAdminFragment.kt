@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.haunp.mybookstore.databinding.CategoryAdminFragmentBinding
@@ -25,7 +26,7 @@ class CategoryAdminFragment : BaseFragment<CategoryAdminFragmentBinding>() {
     override fun initView() {
         val adapter = CategoryAdapter()
         binding.categoryAdminRecyclerView.adapter = adapter
-        binding.categoryAdminRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.categoryAdminRecyclerView.layoutManager = GridLayoutManager(context,2)
 
         // Lắng nghe LiveData và cập nhật RecyclerView
         viewModel.categories.observe(viewLifecycleOwner) { categoryList ->

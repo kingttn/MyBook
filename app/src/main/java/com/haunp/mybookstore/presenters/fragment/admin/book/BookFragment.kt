@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -38,7 +39,8 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
             adapter.submitList(bookList)
             saveBooksToSharedPreferences(bookList)
         }
-
+    }
+    override fun initAction() {
         binding{
             btnSelectBook.setOnClickListener {
                 val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
@@ -50,15 +52,22 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                 val price = edtPrice.text.toString()
                 val quantity = edtQuantity.text.toString()
                 val category = edtCategory.text.toString()
+                val description = edtDescription.text.toString()
                 val imageUriString = selectedImageUri?.toString() ?: ""
+                if (title.isBlank() || author.isBlank() || price.isBlank() || quantity.isBlank() || category.isBlank()) {
+                    Toast.makeText(context, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 val bookEntity = BookEntity(
                     title = title,
                     author = author,
                     price = price.toDouble(),
                     quantity = quantity.toInt(),
-                    categoryId = 1,
+                    categoryId = category.toInt(), // Cần làm hàm check có tồn tại không
+                    description = description,
                     imageUri = imageUriString
                 )
+
                 viewModel.addBook(bookEntity)
                 edtIdBook.setText("")
                 edtTitle.setText("")
@@ -66,31 +75,6 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                 edtPrice.setText("")
                 edtQuantity.setText("")
                 edtCategory.setText("")
-            }
-//            btnDel.setOnClickListener {
-//                val id = edtIdBook.text.toString()
-//                viewModel.deleteBook(id.toInt())
-//                edtIdBook.setText("")
-//            }
-            btnUpdate.setOnClickListener {
-                val id = edtIdBook.text.toString()
-                val title = edtTitle.text.toString()
-                val author = edtAuthor.text.toString()
-                val price = edtPrice.text.toString()
-                val quantity = edtQuantity.text.toString()
-                val category = edtCategory.text.toString()
-                val imageUriString = selectedImageUri?.toString() ?: ""
-                val bookEntity = BookEntity(
-                    bookId = id.toInt(),
-                    title = title,
-                    author = author,
-                    price = price.toDouble(),
-                    quantity = quantity.toInt(),
-                    categoryId = 0,
-                    imageUri = imageUriString
-
-                )
-//                viewModel.updateBook(bookEntity)
             }
         }
     }

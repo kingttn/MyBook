@@ -21,13 +21,13 @@ class UserRepositoryImpl(private val userDao: UserDao,private val cartDao: CartD
         return userDao.login(userName, password) ?: UserEntity()
     }
 
-    override suspend fun addBookInCart(cartEntity: CartEntity) {
-        return cartDao.addToCart(cartEntity)
-    }
-    override suspend fun deleteBookInCart(cartEntity: CartEntity) {
-        return cartDao.removeFromCart(cartEntity)
-    }
-    override suspend fun updateQuantityBook(userId: Int, productId: Int, quantity: Int) {
-        return cartDao.updateCartQuantity(userId, productId, quantity)
-    }
+//    override suspend fun addBookInCart(cartEntity: CartEntity) {
+//        return cartDao.addToCart(cartEntity)
+//    }
+//    override suspend fun deleteBookInCart(cartEntity: CartEntity) {
+//        return cartDao.removeFromCart(cartEntity)
+//    }
+//    override suspend fun updateQuantityBook(userId: Int, productId: Int, quantity: Int) {
+//        return cartDao.updateCartQuantity(userId, productId, quantity)
+//    }
 }

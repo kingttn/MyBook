@@ -11,6 +11,7 @@ import com.haunp.mybookstore.domain.entity.BookEntity
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookAdapter.BookViewHolder
 
 class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+    var onItemClick : (BookEntity) -> Unit = {}
     private val books = mutableListOf<BookEntity>()
     fun submitList(newBooks: List<BookEntity>){
         books.clear()
@@ -25,6 +26,10 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
             Glide.with(binding.root.context)
                 .load(book.imageUri)
                 .into(binding.imgBook)
+
+            binding.root.setOnClickListener {
+                onItemClick(book)
+            }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {

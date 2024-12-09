@@ -13,6 +13,7 @@ import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.admin.category_admin.CategoryAdminFragment
 import com.haunp.mybookstore.presenters.fragment.admin.statistical.StatisticalFragment
 import com.haunp.mybookstore.presenters.fragment.admin.user.UserFragment
+import com.haunp.mybookstore.presenters.fragment.user.BookDetailFragment
 import com.haunp.mybookstore.presenters.fragment.user.cart.CartFragment
 import com.haunp.mybookstore.presenters.fragment.user.category_user.CategoryUserFragment
 import com.haunp.mybookstore.presenters.fragment.user.home.HomeFragment
@@ -33,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         }
         settingViewModel.user.observe(this) {
             setBottomNavigation(it?.role ?: 2)
+        }
+        supportFragmentManager.addOnBackStackChangedListener {
+            toggleBottomNavigationView()
         }
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -145,4 +149,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    private fun toggleBottomNavigationView() {
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        // Kiểm tra nếu là BookDetailFragment thì ẩn BottomNavigationView
+        if (currentFragment is BookDetailFragment) {
+            bottomNavigationView.visibility = View.GONE
+        } else {
+            bottomNavigationView.visibility = View.VISIBLE
+        }
+    }
+
 }

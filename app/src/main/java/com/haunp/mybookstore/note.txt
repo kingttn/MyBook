@@ -1,6 +1,6 @@
 1. Ở mainactivity hay các fragment nên chia các hàm riêng biệt ra
 Vd: Hàm khởi tạo view thì đặt là initView
-    Hàm khởi tạo các sự kiện thì đặt là initAction
+    Hàm khởi tạo các sự kiện thì đặt là f
 
 2. CoreViewmodel là viewmodel dùng chung cho tất cả các fragment có chung một tính năng
 Vd: Nếu muốn lưu trạng thái user đã login ở setting viewmodel như em đang cần thì em vứt nó ở coreviewmodel và
@@ -22,4 +22,7 @@ private val settingViewModel: SettingViewModel by viewModels()
 4. Tạo thêm màn hình khi click vào sách ở Home sẽ đi đến màn hình BookDetail thì
  sẽ có nút thêm sách vào giỏ hàng
 
- 5.
+ 5. Nhân làm : CheckLogin(check coi có user đó chưa nếu chưa có thì báo lỗi),
+ Check Category có tồn tại không khi thêm Book(bookFragment coi dần về),
+ làm thêm cái update với Delete, tương tự với Cate, user,
+ Check khi bấm zo cart giỏ hàng á user.role bằng null thì trả vô trang Login

@@ -7,6 +7,7 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -14,10 +15,13 @@ import com.haunp.mybookstore.R
 import com.haunp.mybookstore.databinding.HomeFragmentBinding
 import com.haunp.mybookstore.domain.entity.BookEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
+import com.haunp.mybookstore.presenters.fragment.user.BookDetailFragment
 import org.koin.android.ext.android.inject
 
 
 class HomeFragment : BaseFragment<HomeFragmentBinding>() {
+
+    override var isTerminalBackKeyActive: Boolean = true
 
     // Danh sách hình ảnh cho banner
     private val imageList = listOf(
@@ -37,9 +41,7 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
         }
     }
 
-    // Khởi tạo ViewModel
-    override var isTerminalBackKeyActive: Boolean = true
-    private val viewModel: HomeViewModel by inject()
+    // Khởi tạo
 
     override fun getDataBinding(): HomeFragmentBinding {
         return HomeFragmentBinding.inflate(layoutInflater)
@@ -49,12 +51,11 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
         super.onViewCreated(view, savedInstanceState)
 //        setupObservers()
     }
-
+    var adapter = HomeAdapter()
     override fun initView() {
         // Thiết lập adapter cho RecyclerView
-        val adapter = HomeAdapter()
         binding.homeRecyclerView.adapter = adapter
-        binding.homeRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.homeRecyclerView.layoutManager = GridLayoutManager(context,2)
         // Lấy dữ liệu từ SharedPreferences và cập nhật adapter
         val bookList = getBooksFromSharedPreferences()
         adapter.submitList(bookList)
@@ -63,14 +64,19 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
         handler.post(slideshowRunnable)
     }
 
-//    private fun setupObservers() {
-//        // Lắng nghe LiveData từ ViewModel nếu cần đồng bộ thêm dữ liệu
-//        viewModel.books.observe(viewLifecycleOwner) { books ->
-//            saveBooksToSharedPreferences(books)
-//            val adapter = binding.homeRecyclerView.adapter as? HomeAdapter
-//            adapter?.submitList(books)
-//        }
-//    }
+    override fun initAction() {
+        adapter.onItemClick = { book ->
+            val bookDetailFragment = BookDetailFragment()
+            val bundle = Bundle().apply {
+                putParcelable("book", book)
+            }
+            bookDetailFragment.arguments = bundle
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, bookDetailFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

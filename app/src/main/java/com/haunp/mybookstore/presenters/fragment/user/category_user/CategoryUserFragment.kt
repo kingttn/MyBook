@@ -2,6 +2,7 @@ package com.haunp.mybookstore.presenters.fragment.user.category_user
 
 import android.content.Context
 import android.util.Log
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -22,7 +23,7 @@ class CategoryUserFragment : BaseFragment<CategoryUserFragmentBinding>() {
     override fun initView() {
         val adapter = CategoryAdapter()
         binding.categoryRecyclerView.adapter = adapter
-        binding.categoryRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.categoryRecyclerView.layoutManager = GridLayoutManager(context,2)
 
         // Lắng nghe LiveData và cập nhật RecyclerView
         val categoryList = getCategoriesFromSharedPreferences()

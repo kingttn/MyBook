@@ -47,6 +47,7 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
         addEvent()
         addObservers()
         initData()
+        initAction()
     }
 
     abstract fun getDataBinding(): T
@@ -60,6 +61,8 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     open fun addObservers() {}
 
     open fun initData() {}
+
+    open fun initAction() {}
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -37,6 +37,11 @@
         android:hint="Giá sách"
         android:layout_height="wrap_content" />
     <EditText
+        android:id="@+id/edtDescription"
+        android:layout_width="match_parent"
+        android:hint="Thông tin chi tiết"
+        android:layout_height="wrap_content" />
+    <EditText
         android:id="@+id/edtQuantity"
         android:layout_width="match_parent"
         android:hint="Số lượng sách"

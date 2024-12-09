@@ -1,9 +1,12 @@
 package com.haunp.mybookstore.domain.entity
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(
     tableName = "books",
     foreignKeys = [
@@ -20,7 +23,8 @@ data class BookEntity(
     val title: String,
     val author: String,
     val price: Double,
+    val description: String,
     val quantity: Int,
     val categoryId: Int, // Khóa ngoại đến bảng Categories
     val imageUri: String
-)
+):Parcelable
