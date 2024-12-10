@@ -7,4 +7,5 @@ class LoginUseCase(private val repository: IUserRepository) {
     suspend operator fun invoke(username: String, password: String): UserEntity {
         return repository.loginUser(username, password)
     }
+    
 }

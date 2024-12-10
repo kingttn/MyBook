@@ -17,6 +17,12 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE username = :username AND password = :password")
     suspend fun login(username: String, password: String): UserEntity?
 
+    @Query("SELECT COUNT(*) > 0 FROM users WHERE username = :username AND password = :password")
+    suspend fun isUserValid(username: String, password: String): Boolean
+
+//    @Query("SELECT * FROM users WHERE username = :username AND password = password")
+//    suspend fun getUserByUsername(username: String): UserEntity?
+
     @Update
     suspend fun updateUser(user: UserEntity)
 

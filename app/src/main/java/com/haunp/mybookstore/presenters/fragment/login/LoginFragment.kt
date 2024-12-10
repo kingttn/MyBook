@@ -14,6 +14,7 @@ import com.haunp.mybookstore.presenters.base.BaseFragment
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
 import com.haunp.mybookstore.presenters.fragment.main.MainActivity
 import com.haunp.mybookstore.presenters.fragment.register.RegisterFragment
+import com.haunp.mybookstore.presenters.fragment.user.home.HomeFragment
 import com.haunp.mybookstore.presenters.fragment.user.setting.SettingViewModel
 import org.koin.android.ext.android.inject
 
@@ -47,15 +48,20 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
         binding {
             btnLogin.setOnClickListener {
-                val username = edtUsername.text.toString()
-                val password = edtPassword.text.toString()
+                val username = edtUsername.text.toString().trim()
+                val password = edtPassword.text.toString().trim()
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(context,"Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 else if(username == "admin" && password == "admin"){
+                    Log.d("LoginFragment", "username: $username, password: $password")
                     (activity as MainActivity).showFragment(BookFragment())
                     settingViewModel?.setUser(UserEntity(99, password,"admin","admin","admin", "admin",0))
+                }
+                else {
+                    Log.d("LoginUser", "username: $username, password: $password")
+                    viewModel.checkUserCredentials(username, password)
                 }
                 viewModel.login(username, password)
             }

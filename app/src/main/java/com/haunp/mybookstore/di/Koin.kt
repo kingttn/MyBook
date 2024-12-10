@@ -12,12 +12,15 @@ import com.haunp.mybookstore.domain.repository.ICategoryRepository
 import com.haunp.mybookstore.domain.repository.IUserRepository
 import com.haunp.mybookstore.domain.usecase.AddBookUseCase
 import com.haunp.mybookstore.domain.usecase.AddCateUseCase
+import com.haunp.mybookstore.domain.usecase.DeleteBookUseCase
 import com.haunp.mybookstore.domain.usecase.DeleteCateUseCase
 import com.haunp.mybookstore.domain.usecase.GetAccountUseCase
+import com.haunp.mybookstore.domain.usecase.GetBookByIdUseCase
 import com.haunp.mybookstore.domain.usecase.GetCateUseCase
 import com.haunp.mybookstore.domain.usecase.GetListBookUseCase
 import com.haunp.mybookstore.domain.usecase.LoginUseCase
 import com.haunp.mybookstore.domain.usecase.RegisterUseCase
+import com.haunp.mybookstore.domain.usecase.UpdateBookUseCase
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookViewModel
 import com.haunp.mybookstore.presenters.fragment.admin.category_admin.CategoryAdminViewModel
 import com.haunp.mybookstore.presenters.fragment.admin.statistical.StatisticalViewModel
@@ -46,8 +49,8 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 
 var viewModelModule = module {
     viewModel { RegisterViewModel(get()) }
-    viewModel { LoginViewModel(get()) }
-    viewModel { BookViewModel(get(),get()) }
+    viewModel { LoginViewModel(get(), get()) }
+    viewModel { BookViewModel(get(),get(), get(), get(), get()) }
     viewModel { UserViewModel(get(),get()) }
     viewModel { CategoryAdminViewModel(get(),get(),get()) }
     viewModel { StatisticalViewModel() }
@@ -67,6 +70,9 @@ var useCaseModule = module {
     factory { GetCateUseCase(get()) }
     factory { GetAccountUseCase(get()) }
     factory { DeleteCateUseCase(get()) }
+    factory { DeleteBookUseCase(get()) }
+    factory { UpdateBookUseCase(get()) }
+    factory { GetBookByIdUseCase(get()) }
 }
 
 var repositoryModule = module {

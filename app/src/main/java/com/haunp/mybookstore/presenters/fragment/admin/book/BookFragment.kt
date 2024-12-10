@@ -74,7 +74,55 @@ class BookFragment : BaseFragment<BookFragmentBinding>() {
                 edtAuthor.setText("")
                 edtPrice.setText("")
                 edtQuantity.setText("")
+                edtDescription.setText("")
                 edtCategory.setText("")
+            }
+            btnDel.setOnClickListener{
+                val id = edtIdBook.text.toString().toInt()
+                try {
+                    viewModel.deleteBook(id)
+                }
+                catch (e: Exception){
+                    Log.e("Error", "Báo lỗ!!!")
+                }
+            }
+            btnUpdate.setOnClickListener {
+                val id = edtIdBook.text.toString().toIntOrNull()
+                val title = edtTitle.text.toString()
+                val author = edtAuthor.text.toString()
+                val price = edtPrice.text.toString()
+                val quantity = edtQuantity.text.toString()
+                val category = edtCategory.text.toString()
+                val description = edtDescription.text.toString()
+                val imageUriString = selectedImageUri?.toString() ?: ""
+                if (id == null) {
+                    Toast.makeText(context, "Vui lòng nhập ID hợp lệ", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                if (title.isBlank() || author.isBlank() || price.isBlank() || quantity.isBlank() || category.isBlank()) {
+                    Toast.makeText(context, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                val bookEntity = BookEntity(
+                    bookId = id,
+                    title = title,
+                    author = author,
+                    price = price.toDouble(),
+                    quantity = quantity.toInt(),
+                    categoryId = category.toInt(), // Cần làm hàm check có tồn tại không
+                    description = description,
+                    imageUri = imageUriString
+                )
+
+                viewModel.updateBook(bookEntity)
+                edtIdBook.setText("")
+                edtTitle.setText("")
+                edtAuthor.setText("")
+                edtPrice.setText("")
+                edtQuantity.setText("")
+                edtDescription.setText("")
+                edtCategory.setText("")
+                selectedImageUri = null // Đặt lại selectedImageUri về null để về trạng thái rỗng
             }
         }
     }
