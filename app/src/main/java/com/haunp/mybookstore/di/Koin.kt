@@ -5,10 +5,12 @@ import com.haunp.mybookstore.data.database.db.AppDatabase
 import com.haunp.mybookstore.data.repository.BookRepositoryImpl
 import com.haunp.mybookstore.data.repository.CartRepositoryImpl
 import com.haunp.mybookstore.data.repository.CategoryRepositoryImpl
+import com.haunp.mybookstore.data.repository.OrderRepositoryImpl
 import com.haunp.mybookstore.data.repository.UserRepositoryImpl
 import com.haunp.mybookstore.domain.repository.IBookRepository
 import com.haunp.mybookstore.domain.repository.ICartRepository
 import com.haunp.mybookstore.domain.repository.ICategoryRepository
+import com.haunp.mybookstore.domain.repository.IOrderRepository
 import com.haunp.mybookstore.domain.repository.IUserRepository
 import com.haunp.mybookstore.domain.usecase.AddBookUseCase
 import com.haunp.mybookstore.domain.usecase.AddCateUseCase
@@ -24,6 +26,7 @@ import com.haunp.mybookstore.presenters.fragment.admin.statistical.StatisticalVi
 import com.haunp.mybookstore.presenters.fragment.admin.user.UserViewModel
 import com.haunp.mybookstore.presenters.fragment.login.LoginViewModel
 import com.haunp.mybookstore.presenters.fragment.register.RegisterViewModel
+import com.haunp.mybookstore.presenters.fragment.user.cart.CartViewModel
 import com.haunp.mybookstore.presenters.fragment.user.category_user.CategoryUserViewModel
 import com.haunp.mybookstore.presenters.fragment.user.home.HomeViewModel
 import com.haunp.mybookstore.presenters.fragment.user.search.SearchViewModel
@@ -55,6 +58,7 @@ var viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { SearchViewModel(get()) }
     viewModel { SettingViewModel() }
+    viewModel { CartViewModel() }
 }
 
 
@@ -74,6 +78,7 @@ var repositoryModule = module {
     single<IBookRepository>{ BookRepositoryImpl(get()) }
     single<ICategoryRepository>{ CategoryRepositoryImpl(get()) }
     single<ICartRepository> { CartRepositoryImpl(get()) }
+    single<IOrderRepository> { OrderRepositoryImpl(get()) }
 }
 
 val databaseModule = module {

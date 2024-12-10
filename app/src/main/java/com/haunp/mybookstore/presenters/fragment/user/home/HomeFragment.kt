@@ -53,9 +53,10 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
     }
     var adapter = HomeAdapter()
     override fun initView() {
-        // Thiết lập adapter cho RecyclerView
-        binding.homeRecyclerView.adapter = adapter
-        binding.homeRecyclerView.layoutManager = GridLayoutManager(context,2)
+        binding{
+            homeRecyclerView.layoutManager = GridLayoutManager(context,2)
+            homeRecyclerView.adapter = adapter
+        }
         // Lấy dữ liệu từ SharedPreferences và cập nhật adapter
         val bookList = getBooksFromSharedPreferences()
         adapter.submitList(bookList)

@@ -8,15 +8,23 @@ import com.haunp.mybookstore.domain.repository.ICartRepository
 
 class CartRepositoryImpl(private val cartDao: CartDao)
     : ICartRepository {
-    override suspend fun getCart(userId: Int): CartEntity? {
-        return cartDao.getCart(userId)
+    override fun addBookToCart(cart: CartEntity) {
+        return cartDao.addBookToCart(cart)
     }
 
-    override suspend fun addToCart(userId: Int, book: BookEntity) {
-//        return cartDao.upsertCart(updatedCart)
+    override fun getCartByUserId(userId: Int): List<CartEntity> {
+        return cartDao.getCartByUserId(userId)
+    }
+
+    override suspend fun removeBookFromCart(cart: CartEntity) {
+        return cartDao.removeBookFromCart(cart)
     }
 
     override suspend fun clearCart(userId: Int) {
-        TODO("Not yet implemented")
+        return cartDao.clearCart(userId)
+    }
+
+    override suspend fun deleteCartItemById(cartId: Int) {
+        return cartDao.deleteCartItemById(cartId)
     }
 }
