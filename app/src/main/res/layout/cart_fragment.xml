@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recCategory"
+        android:id="@+id/rVCart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
@@ -63,7 +63,7 @@
             android:textColor="@android:color/white"
             android:textSize="18sp" />
         <Button
-            android:id="@+id/thanhTOan"
+            android:id="@+id/btnThanhToan"
             android:text="Thanh toán"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"

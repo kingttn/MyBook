@@ -1,14 +1,18 @@
 package com.haunp.mybookstore.presenters.fragment.user.search
 
 import android.content.Context
+import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.haunp.mybookstore.R
 import com.haunp.mybookstore.databinding.SearchFragmentBinding
 import com.haunp.mybookstore.domain.entity.BookEntity
 import com.haunp.mybookstore.presenters.base.BaseFragment
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookAdapter
+import com.haunp.mybookstore.presenters.fragment.user.BookDetailFragment
+import com.haunp.mybookstore.presenters.fragment.user.home.HomeAdapter
 import org.koin.android.ext.android.inject
 
 class SearchFragment: BaseFragment<SearchFragmentBinding>() {
@@ -21,8 +25,8 @@ class SearchFragment: BaseFragment<SearchFragmentBinding>() {
         return SearchFragmentBinding.inflate(layoutInflater)
     }
 
+    var adapter = HomeAdapter()
     override fun initView() {
-        val adapter = BookAdapter()
         binding.searchResultsRecyclerView.adapter = adapter
         binding.searchResultsRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.edtSearch.addTextChangedListener { searchText ->
@@ -35,6 +39,21 @@ class SearchFragment: BaseFragment<SearchFragmentBinding>() {
             adapter.submitList(filteredBooks)
         }
     }
+
+    override fun initAction() {
+        adapter.onItemClick = { book ->
+            val bookDetailFragment = BookDetailFragment()
+            val bundle = Bundle().apply {
+                putParcelable("book", book)
+            }
+            bookDetailFragment.arguments = bundle
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, bookDetailFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+    }
+
     private fun getBooksFromSharedPreferences(): List<BookEntity> {
         val sharedPreferences = requireContext().getSharedPreferences("BookAppPrefs", Context.MODE_PRIVATE)
         val gson = Gson()

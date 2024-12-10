@@ -20,10 +20,21 @@ private val settingViewModel: SettingViewModel by viewModels()
 3. BookStoreManager là file lưu dữ liệu Cache.
 
 4. Tạo thêm màn hình khi click vào sách ở Home sẽ đi đến màn hình BookDetail thì
- sẽ có nút thêm sách vào giỏ hàng
+ sẽ có nút thêm sách vào giỏ hàng(done chưa fix UI)
 
  5. Nhân làm : CheckLogin(check coi có user đó chưa nếu chưa có thì báo lỗi)(done)-> nhưng chưa làm
  giao diện hiển thị tên đăng nhập và nút logout,
  Check Category có tồn tại không khi thêm Book(bookFragment coi dần về),
  làm thêm cái update với Delete, tương tự với Cate, user,
  Check khi bấm zo cart giỏ hàng á user.role bằng null thì trả vô trang Login
+
+ 6. Hậu làm Cart - Order(SettingFragment - StatificalFragment):
+ + Khi người dùng vào BookDetailFragment(Detail) khi bấm thêm vào giỏ hàng
+ sẽ chuyển vào dữ liệu của book hiện tại vào CartFragment -
+ Khi đó Cart sẽ nhận dữ liệu của book từ Detail và thêm vào trong kho của Cart,
+ book hiện tại đang ở kiểu Int sẽ chuyển ngược về Converters để chuyển về kiểu String để lưu vào Entity
+ + Khi người dùng đã lựa chọn xong sẽ bấm vào mua, Sẽ đưa tất cả dữ liệu của các book hiện tại về
+ Order. Order sẽ hiện ra bên trong RecyclerView của người dùng về ngày tháng năm và số lượng sách.
+ Cũng sẽ hiện ra tất cả các Order trong StatificalFragment.
+
+ 7. Trong CategoryUser khi bấm vào bất kỳ Item nào sẽ gọi ra các Book thuộc category đó.

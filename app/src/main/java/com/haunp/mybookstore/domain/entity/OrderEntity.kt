@@ -19,9 +19,7 @@ data class OrderEntity(
     @PrimaryKey(autoGenerate = true)
     val orderId: Int = 0,
     val userId: Int,
-    val bookId: String,
     val orderDate: String,
-    val totalAmount: Double,
     val quantity: Int,
-    val price: Double
+    val totalAmount: Double
 )

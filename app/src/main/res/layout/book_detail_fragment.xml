@@ -1,35 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:padding="10dp"
-        android:src="@drawable/nlkt" />
-    <TextView
-        android:id="@+id/nameBook"
+    <LinearLayout
+        android:id="@+id/llItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""/>
-    <TextView
-        android:id="@+id/priceBook"
+        android:orientation="vertical"
+        android:background="#3F51B5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:id="@+id/imgBook"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:padding="10dp"
+            android:src="@drawable/nlkt" />
+        <TextView
+            android:id="@+id/nameBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+        <TextView
+            android:id="@+id/priceBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+        <TextView
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+        <TextView
+            android:id="@+id/authorBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+        <TextView
+            android:id="@+id/descriptionBook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""/>
-    <TextView
-        android:background="@color/grey"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-    <TextView
-        android:id="@+id/authorBook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""/>
-    <TextView
-        android:id="@+id/descriptionBook"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""/>
-</LinearLayout>
+        android:text="Thêm vào giỏ hàng"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

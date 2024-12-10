@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.haunp.mybookstore.R
 import com.haunp.mybookstore.presenters.CoreViewModel
 import com.haunp.mybookstore.presenters.fragment.admin.book.BookFragment
@@ -151,12 +152,15 @@ class MainActivity : AppCompatActivity() {
     }
     private fun toggleBottomNavigationView() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bottom_view)
+        val floatButtonCart = findViewById<FloatingActionButton>(R.id.fbn_cart)
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
         // Kiểm tra nếu là BookDetailFragment thì ẩn BottomNavigationView
-        if (currentFragment is BookDetailFragment) {
+        if (currentFragment is BookDetailFragment || currentFragment is CartFragment) {
             bottomNavigationView.visibility = View.GONE
+            floatButtonCart.visibility = View.GONE
         } else {
             bottomNavigationView.visibility = View.VISIBLE
+            floatButtonCart.visibility = View.VISIBLE
         }
     }
 

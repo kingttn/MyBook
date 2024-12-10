@@ -28,7 +28,7 @@
             android:layout_gravity="center"
             android:padding="10dp">
             <TextView
-                android:id="@+id/tvTittle"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nguyên Lý Kế Toán" />
@@ -44,7 +44,7 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/btnMinus"
                     android:layout_width="18dp"
                     android:layout_height="21dp"
                     android:layout_weight="1"
@@ -59,16 +59,24 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/btnPlus"
                     android:layout_width="18dp"
                     android:layout_height="21dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="+" />
-
             </LinearLayout>
 
-        </LinearLayout>
 
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/btnRemove"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="right"
+            android:text="x" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
